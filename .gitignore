@@ -1,2 +1,17 @@
 .vscode/
 metal-cpp/
+
+# Build directories
+build/
+build-*
+cmake-build-*
+bin/
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+CMakeOutput.log
+CMakeError.log
+
+# Visual Studio Code settings
+.vscode/
