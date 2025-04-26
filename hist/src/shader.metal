@@ -1,4 +1,5 @@
 #include <metal_stdlib>
+
 using namespace metal;
 
 struct MetalTrialParams {
@@ -148,7 +149,7 @@ kernel void runTrial(device const MetalTrialParams* params [[buffer(0)]],
     }
     
     // Calculate gaps
-    int max_histogram_states = pow(num_states, num_states);
+    int max_histogram_states = int(pow(float(num_states), float(num_states)));
     int max_sorted_poll_states = bellNumber(num_states);
     
     int histogram_gap = max_histogram_states - unique_histogram_states;
