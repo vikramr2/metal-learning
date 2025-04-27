@@ -36,11 +36,7 @@ cmake ..
 make
 
 # Run the histogram simulation
-./histogram_sorted_poll <num_states> <num_events> <num_agents> <num_trials> [num_threads]
-
-# Run the matrix-vector multiplication demo
-./matrix_vector_multiply
-```
+./histogram <num_states> <num_events> <num_agents> <num_trials> [num_threads]
 
 ## Usage
 
@@ -55,7 +51,7 @@ The histogram simulation accepts the following parameters:
 Example:
 
 ```bash
-./histogram_sorted_poll 4 3 10 1000
+./hist 4 3 10 1000
 ```
 
 This will run 1000 trials with a system having 4 states, 3 events, and 10 agents.
@@ -67,4 +63,3 @@ This will run 1000 trials with a system having 4 states, 3 events, and 10 agents
 - Results are written to text files named according to the parameters:
   - `best_histogram_<num_states>_<num_events>.txt`
   - `best_sorted_poll_<num_states>_<num_events>.txt`
-  - 
