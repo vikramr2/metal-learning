@@ -36,7 +36,7 @@ cmake ..
 make
 
 # Run the histogram simulation
-./histogram <num_states> <num_events> <num_agents> <num_trials> [num_threads]
+./hist <num_states> <num_events> <num_agents> <num_trials> [num_threads]
 
 ## Usage
 
