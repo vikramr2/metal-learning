@@ -27,16 +27,13 @@ This project implements a Metal-accelerated simulation for calculating histogram
 ## Building the Project
 
 ```bash
-# Create a build directory
-mkdir build
-cd build
-
-# Configure and build
-cmake ..
 make
+```
 
 # Run the histogram simulation
+```
 ./hist <num_states> <num_events> <num_agents> <num_trials> [num_threads]
+```
 
 ## Usage
 
