@@ -6,11 +6,13 @@ METAL_LINKER = xcrun -sdk macosx metallib
 
 # Paths
 SRC_DIR = src
+INCLUDE_DIR = include
 BUILD_DIR = build
 BIN_DIR = bin
 
 # Files
-SOURCES = $(SRC_DIR)/main.cpp
+SOURCES = $(SRC_DIR)/MetalCppImpl.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/RandomHistogramSortedPoll.cpp
+HEADERS = $(INCLUDE_DIR)/RandomHistogramSortedPoll.h
 METAL_SRC = $(SRC_DIR)/shader.metal
 METAL_LIB = $(BUILD_DIR)/shader.metallib
 EXECUTABLE = $(BIN_DIR)/hist

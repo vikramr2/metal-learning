@@ -1,5 +1,4 @@
 #include <metal_stdlib>
-
 using namespace metal;
 
 struct MetalTrialParams {
@@ -12,10 +11,10 @@ struct MetalTrialParams {
 struct MetalTrialResult {
     int histogram_gap;
     int sorted_poll_gap;
-    int histogram_transition_matrix[16 * 16];  // max_states * max_states
-    int histogram_initial_state[16];           // max_states
-    int sorted_poll_transition_matrix[16 * 16]; // max_states * max_states
-    int sorted_poll_initial_state[16];         // max_states
+    int histogram_transition_matrix[16 * 16];  // MAX_STATES * MAX_STATES
+    int histogram_initial_state[16];           // MAX_STATES
+    int sorted_poll_transition_matrix[16 * 16]; // MAX_STATES * MAX_STATES
+    int sorted_poll_initial_state[16];         // MAX_STATES
 };
 
 // Fast random number generator for Metal
@@ -32,7 +31,7 @@ uint wang_hash(uint seed) {
 int bellNumber(int n) {
     if (n == 0 || n == 1) return 1;
     
-    int bellTriangle[17][17]; // max_states + 1
+    int bellTriangle[17][17]; // MAX_STATES + 1
     bellTriangle[0][0] = 1;
     
     for (int i = 1; i <= n; i++) {
@@ -45,11 +44,10 @@ int bellNumber(int n) {
     return bellTriangle[n][0];
 }
 
-// Simplified single trial function for Metal
-// This is a simplified version that prioritizes performance over completeness
+// Kernel function for running a single trial
 kernel void runTrial(device const MetalTrialParams* params [[buffer(0)]],
-                        device MetalTrialResult* results [[buffer(1)]],
-                        uint thread_id [[thread_position_in_grid]]) {
+                     device MetalTrialResult* results [[buffer(1)]],
+                     uint thread_id [[thread_position_in_grid]]) {
     
     const int max_states = 16;
     const int num_states = params->num_states;
@@ -133,7 +131,7 @@ kernel void runTrial(device const MetalTrialParams* params [[buffer(0)]],
                 }
             }
             
-            // Check if sorted state is unique
+            // Check if sorted state is unique (simplified for Metal)
             bool is_sorted_unique = true;
             // Implementation simplified for performance
             
@@ -149,7 +147,7 @@ kernel void runTrial(device const MetalTrialParams* params [[buffer(0)]],
     }
     
     // Calculate gaps
-    int max_histogram_states = int(pow(float(num_states), float(num_states)));
+    int max_histogram_states = pow(float(num_states), float(num_states));
     int max_sorted_poll_states = bellNumber(num_states);
     
     int histogram_gap = max_histogram_states - unique_histogram_states;
